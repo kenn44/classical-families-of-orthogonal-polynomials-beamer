@@ -1,0 +1,860 @@
+\documentclass[xcolor=dvipsnames,10pt,mathserif]{beamer}
+\setcounter{tocdepth}{3}
+
+
+\usepackage[french]{babel}%\usepackage{textcomp}
+\usepackage{indentfirst}%\usepackage{enumitem}
+\usepackage[dvips]{epsfig}
+\usepackage{xcolor,pslatex,float,graphicx,t1enc,amscd,pifont}
+\usepackage{amsfonts,amssymb,amsmath,pgf,epsfig,indentfirst}
+\usepackage{mathrsfs}
+
+\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+\usepackage[utf8]{inputenc}
+%%##################################################################################################
+\title{\'Etude de quelques familles classiques de polynômes orthogonaux}
+\author[\it Kenneth ASSOGBA et  Larissa DENAKPO]{\textrm{\large Kenneth ASSOGBA \&  Larissa DENAKPO } \\ {\scriptsize{ kennethassogba@gmail.com\\larel5000@gmail.com}}}
+\institute{Université de Abomey-Calavi ({\it\textcolor{blue}{UAC}}~)\\ 
+Institut de Math\'ematiques et de Sciences Physiques ({\it\textcolor{blue}{IMSP}}~)\\ 
+%Unit\'e de Recherche en Math\'ematiques et en Physiques Math\'ematiques ({\it\textcolor{red}{URMPM}}~) \\
+
+\vspace{0.4cm}
+
+{\color{black} \large{Soutenance de Licence Spéciale des classes préparatoires}}\\
+
+\vspace{0.3cm}
+
+{\bf Superviseur}:\\
+\vspace{0.2cm}
+
+Prof. \bf  {Léonard TODJIHOUNDE}}
+%\logo{\includegraphics[height=5mm]{afriq.png}\hspace*{11cm}\includegraphics[height=5mm]{imsp.png}}
+\date{\today}
+\usetheme{Madrid}%
+\useoutertheme{shadow}
+\useinnertheme{rounded}
+\setbeamertemplate{navigation symbols}{\large\insertframenumber/\inserttotalframenumber}%
+%\setbeamercolor{title}{bg=blue!75}%{bg=blue!20,fg=...} 
+%\setbeamercolor{hyperef}{green} 
+\setbeamercolor{cite}{fg=blue} 
+\setbeamercolor{links}{fg=red}%{bg=blue!20,fg=} 
+\hypersetup{citecolor=blue}
+%\setbeamercolor{author}{fg=Plum!100}%RGB={205,173,0}}%{fg=gray!20,fg=blue!100,fg=black!75,Plum!100}%
+\setbeamercovered{transparent}% %
+%\setbeamercolor{background canvas}{bg=}
+\setbeamercovered{highly dynamic}
+\setbeamertemplate{itemize item}{\ding{228}}%{\ding{226}}%{$\clubsuit$}
+\setbeamertemplate{theorems}[normal font]
+%%#########################################################################
+
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule
+  {.gif}{png}{.png}{convert gif:\SourceFile.\SourceExt png:\OutputFile}
+\AppendGraphicsExtensions{.gif}
+\DeclareGraphicsRule{.gif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .gif`-gif-converted-to.png}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{prf}[1][Preuve]{\textbf{#1.} }{\quad \rule{0.5em}{0.5em}}
+\newenvironment{algo}[1][Algorithme]{\textbf{\\#1:\\}}{\\}
+\theoremstyle{plain}
+\newtheorem{thm}{Th\'eor\`eme}%\underline{Th\'eor\`eme}}%[section]
+\newtheorem{cor}[thm]{Corollaire}
+\newtheorem{lem}[thm]{Lemme}%\underline{Lemme}}
+\newtheorem{pro}[thm]{Proposition}%\underline{Proposition}}
+\newtheorem{pp}[thm]{Propri\'et\'e}%\underline{Propri\'et\'e}}
+\newtheorem{df}[thm]{D\'efinition}%\underline{D\'efinition}}
+\newtheorem{rap}{Rappel}%[section]
+\newtheorem{rmq}[thm]{Remarque}
+\newtheorem{ex}[thm]{Exemple}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\La}{\Lambda}
+\newcommand{\al}{\alpha}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\ga}{\gamma}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\be}{\beta}
+\newcommand{\te}{\theta}
+\newcommand{\de}{\delta}
+\newcommand{\De}{\Delta}
+\newcommand{\pas}{\partial}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\mc}{\mathcal}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\mi}{\mathit}
+\newcommand{\ms}[1]{\mathsf{#1}}
+\newcommand{\na}{\nabla}
+\newcommand{\nonb}{\nonumber}
+%######################################################################
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\K}{\mathbb{K}}
+%%############################################
+\setlength{\unitlength}{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}%\frametitle{ \hfill \insertpagenumber} 
+ \begin{center}
+ {\Huge \textcolor{Plum}{}}
+  \includegraphics[scale=0.60]{welcome.jpg} %  
+%  \includegraphics[scale=0.60]{bienv1.jpg} % 
+ \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}%\frametitle{ \hfill \insertpagenumber} 
+\titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{caption}[numbered]
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \begin{frame}
+ \frametitle{ Introduction} 
+ \begin{block}{}
+ Les polynômes orthogonaux sont un sujet d'étude pour les mathématiciens depuis des décennies. La théorie concernant ces polynômes n'a cessé de se développer en précision et aussi en importance avec des applications dans différents domaines. En effet les polynômes orthogonaux sont utiles en physique mathématiques lors de la résolution de certaines équations aux dérivées partielles (Laplace, Schrödinger) par la méthode de séparation des variables. Aussi, en analyse numérique, avec l'avènement des ordinateurs, ils sont un des outils d'approximation et d'encodage-décodage. 
+Ces familles de polynômes orthogonaux vérifient souvent certaines relations de récurrence et sont aussi solutions d'équations différentielles.
+\end{block}
+ \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section<presentation>*{Plan}
+\begin{frame}
+  \frametitle{Plan}
+  \tableofcontents[part=1,pausesections]
+\end{frame}
+
+\AtBeginSection[]
+ {
+\begin{frame}<beamer>
+ \frametitle{Plan}
+ \tableofcontents[current,currentsection]
+ \end{frame}
+ }
+ \part<presentation>{}
+ \section<presentation>*{Plan}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Présentation générale des polynômes orthogonaux}
+
+ \begin{frame}
+\frametitle{Formes hermitiennes et produit scalaire \hfill \insertpagenumber}
+Soit $ E $ un $\K$-espace vectoriel; $\K=\R$ ou $\C$
+
+
+\begin{block}{Définition: Forme hermitienne}
+Une forme hermitienne sur $E$ est une application $ \displaystyle{ \phi: E \times E\longrightarrow \K }$ telle que:
+\begin{enumerate}
+\item $ \forall \alpha \in \K, \forall x \in E, \phi( \alpha x,y ) = \alpha \phi( x,y )$
+\item $ \forall x,y,z \in E, \phi( x+z,y ) = \phi( x,y ) + \phi( z,y )$
+\item $ \forall x,y \in E, \phi( y,x ) = \overline{\phi( x,y )}$
+\end{enumerate}
+\end{block}
+
+\pause
+
+\begin{block}{Définition: Produit scalaire}
+Soit $\phi$ une forme hermitienne sur E. $\phi$ est appelé produit scalaire sur $E$ si elle définie positive i.e 
+\begin{equation}
+\forall \ X \in E,\ \phi(X,X)>0
+\end{equation}
+
+\end{block}
+
+\end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Espace préhilbertien et espace de Hilbert \hfill \insertpagenumber}
+
+\begin{block}{Définition: Espace préhilbertien}
+Tout espace vectoriel $E$ muni d'un produit scalaire est appelé espace préhilbertien.
+\\On définit une norme $N$ sur $E$ par 
+\begin{equation}
+N(x) = \sqrt{\phi(x,x)}, \forall x \in E.
+\end{equation}
+\end{block}
+
+\pause
+
+\begin{block}{Définition: Espace de Hilbert}
+On appelle espace de Hilbert tout espace préhilbertien qui est complet relativement à la structure métrique définie par la norme associée au produit scalaire.
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame}{\hfill \insertpagenumber}
+
+\begin{block}{}
+Dans toute la suite on notera:
+\\un produit scalaire  
+\begin{equation}
+ \la\ ,\ \ra 
+\end{equation} 
+
+la norme associée 
+\begin{equation} 
+||\ ||
+\end{equation} 
+
+la distance associée 
+\begin{equation}
+d(\ ,\ )
+\end{equation}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Base hilbertienne \hfill \insertpagenumber}
+Soit $E$ un espace de Hilbert.
+\\On dit qu'une famille $(e_n)_{n\geqslant 1}$ est une base hilbertienne de $E$ si:
+
+\begin{block}{}
+elle est orthonormée, c'est à dire
+\begin{enumerate}
+\item $\forall \ (i,j),\  i \neq j \Rightarrow \la e_i ,e_j \ra = 0$
+\item $\forall \ i \geqslant 1,\  || e_i ||=1$
+\end{enumerate}
+\end{block}
+
+\begin{block}{}
+et si elle est complète ou totale dans $E$.
+\end{block}
+
+\end{frame}
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Projeté orthogonal \hfill \insertpagenumber}
+
+\begin{block}{Proposition-Définition: Projeté orthogonal}
+Soit $E$ un espace de Hilbert et $A$ un sous ensemble de $E$. Pour tout $x \in E$, il existe un unique élément $y\in A$ tel que: $$ d(x,A)=||x-y||.$$
+$y$ est appelé projeté orthogonal de $x$ sur $A$.
+\end{block}
+
+L'application $P_A:E \longrightarrow A$ qui à tout élément de $E$ on associe son projeté orthogonal sur $A$ est appelée projection orthogonale sur $A$. 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Caractérisation du projeté orthogonal \hfill \insertpagenumber}
+
+\begin{pro}
+Soit $E$ un espace de Hilbert, $A$ un sous ensemble de $E$ et $x\in E$. L'élément $y=P_A(x)$ est caractérisé par:
+\begin{enumerate}
+\item $y\in A$
+\item $\forall \ z \in A, \la x-y,z\ra=0.$
+\end{enumerate}
+\end{pro}
+
+\end{frame}
+
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Orthogonalisation de Gram-Schmidt \hfill \insertpagenumber}
+
+Soient $E$ un espace de Hilbert et $(e_n)_{n \geqslant 1}$ un système libre.\\On note $ E_n = Vect( e_1 , \dots, e_n)$ et on pose:
+\begin{equation}
+u_1 = e_1
+\end{equation}
+\begin{equation}
+u_{n+1} = e_{n+1} - P_{E_n}(e_{n+1})
+\end{equation} 
+ 
+\begin{block}{Proposition: Gram Schmidt}
+Le système $(u_n)_{n \geqslant 1}$ ainsi construit est orthogonal et $E_n=\text{Vect}(u_1, \dots, u_n )$.
+\end{block}
+
+\end{frame}
+ 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Espace $L^2$ \hfill \insertpagenumber}
+
+Soit $I$ un intervalle de $\R$
+\begin{block}{Définition: Densité}
+On appelle fonction densité une fonction $w:I \longrightarrow \R$ mesurable, strictement positive et telle que:
+\begin{equation}
+\forall \ n \in \N, \int_I{|x|^n w(x)\ dx} < +\infty
+\end{equation} 
+\end{block}
+
+\pause
+
+\begin{block}{}
+On note $L^2(I,d \lambda)=\{ \ f:I \longrightarrow \R / \ f^2 \  \text{est}\ d \lambda \ \text{intégrable} \}$.
+\end{block}
+\begin{equation}
+d \lambda (x) = w(x)dx.
+\end{equation}
+
+\end{frame}
+ 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Espace $L^2$ (suite) \hfill \insertpagenumber}
+
+\begin{block}{}
+Munit du produit scalaire définit par
+\begin{equation}
+\la f,g \ra = \int_I{f(x)g(x) w(x) \ dx}, 
+\end{equation}
+$ L^2(I,d\lambda)$ est un espace de Hilbert.
+\end{block}
+
+\end{frame}
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Polynômes orthogonaux \hfill \insertpagenumber}
+
+\begin{block}{}
+
+D'après Gram-Schmidt on peut construire une unique famille $ (P_n)_{n \in \N }$ de polynômes unitaires, deux à deux orthogonaux tels que $ \forall n \in \N, \deg{P_n} = n $.
+\end{block}
+
+\pause
+
+\begin{block}{}
+On choisi la famille libre $(f_n)_n$ avec $f_n(x)=x^n, n \in \N$, à laquelle on applique le procédé d'orthonormalisation de Gram-Schmidt. 
+
+Cette famille sera appelée la famille des polynômes orthogonaux associés à $w$.
+
+\end{block}
+
+Dans la suite de cette section l'intervalle considéré sera $I=[a,b]$
+
+\end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Propriétés \hfill \insertpagenumber}
+
+\begin{block}{}
+Soit $q_n$ un polynôme quelconque de degré $n$. Alors: 
+\begin{equation}
+q_n(x)=\sum\limits_{k=0}^n a_k P_k(x),\ \ a_0,a_1,\dots,a_n \ \in \R.
+\end{equation}
+$a_0,a_1,\dots,a_n\ \in \R$. 
+\end{block}
+
+\end{frame}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Propriétés \hfill \insertpagenumber}
+
+\begin{block}{}
+Soit  $ q_k $ un polynôme quelconque de degré $k$, $k=0,\dots,n-1$. Alors: $$ \la q_k,P_n \ra = 0.$$
+\end{block}
+
+\pause
+
+\begin{block}{}
+On suppose que $[a,b]$ est symétrique par rapport à l'origine et que la fonction densité $w$ est paire. Alors $P_n$ a la parité de $n$ c'est à dire, pour tout $ n \in \N $ et pour tout $ x \in [a,b]$ on a: $P_n(-x)=(-1)^n P_n(x)$.
+\end{block}
+
+\end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\begin{frame} \frametitle{Formule de récurrence \hfill \insertpagenumber}
+Soit $k_n$ le coefficient directeur de $P_n$.
+\begin{block}{Proposition: Formule de récurrence}
+Les polynômes $P_n$ satisfont la formule de récurrence:
+\begin{equation}
+ P_{n+1}(x)= (A_n x+B_n)P_n(x) - C_n P_{n-1}(x),\ n \geqslant 1 
+\end{equation}
+
+avec:
+\begin{equation}
+A_n = \dfrac{k_{n+1}}{k_n}
+\end{equation}
+
+\begin{equation}
+B_n = -A_n \dfrac{\la x P_n, P_n \ra}{\la P_n, P_n \ra}
+\end{equation}
+
+\begin{equation}
+C_n=A_n \dfrac{\la x P_n, P_{n-1} \ra}{\la P_{n-1}, P_{n-1} \ra}
+\end{equation}
+
+\end{block}
+
+\end{frame}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Formules de Darboux Christoffel \hfill \insertpagenumber}
+
+\begin{block}{Théorème: Formules de Darboux}
+On a les formules suivantes pour $x \neq y$:
+\begin{enumerate}
+\item $K_n(x,y)= \sum\limits_{k=0}^n P_k(x)P_k(y)=\dfrac{k_n}{k_{n+1}} [\dfrac{P_n(y)P_{n+1}(x)-P_n(x)P_{n+1}(y)}{x-y}] $
+\item $ K_n(x,x) = \sum\limits_{k=0}^n {P_k(x)}^2 = \dfrac{k_n}{k_{n+1}}[P_n(x)P'_{n+1}(x)-P'_n(x)P_{n+1}(x)]\geqslant 0$
+\\Les fonctions $K_n$ sont appelées noyaux de Christoffel.
+\end{enumerate}
+\end{block}
+
+\end{frame}
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Les zéros des polynômes orthogonaux \hfill \insertpagenumber}
+
+\begin{pro}
+Pour $ n \in \N^* $, les racines de $P_n$ sont simples et sont contenus dans $[a,b]$.
+\end{pro}
+
+\pause
+
+\begin{pro}
+Pour $ n \in \N^* $, les polynômes $P_n$ et $P_{n+1}$ n'ont pas de racines en communs et de plus les racines de $P_n$ et $P_{n+1}$ sont alternées.
+\end{pro}
+
+\end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{\'{E}tude de quelques familles classiques de polynômes orthogonaux}
+
+\begin{frame}\frametitle{Formule de Rodrigues \hfill \insertpagenumber}
+\begin{thm}
+Soit $(e_n)_{ n \in \N } $ une suite de $\R$ (on la définit plus bas), $(\phi_n)_{ n \in \N }$ une famille d'applications de $]a, b[$ dans $\mathbb{R}$ qui vérifie :
+\begin{enumerate}
+\item $ (\phi_n)$ est de classe $C^n$ sur $]a, b[$
+\item $ {\phi_n}^{(k)} (a^+) = {\phi_n}^{(k)} (b^-) = 0$ pour $ 0 \leqslant k \leqslant n-1$
+\item $ T_n \equiv \frac{1}{ e_n w}{{\phi_n}^{(n)}}$ est un polynôme de degrés n.
+\end{enumerate}
+Alors $(T_n)_n$ est une suite orthogonale.
+La réciproque est vraie quand $w(x)$ est $C^\infty$.
+\end{thm}
+\end{frame}
+
+
+\begin{frame}\frametitle{Équations différentielles \hfill \insertpagenumber}
+\begin{thm}
+Soit $(P_{n})_{n\in\mathbb{N}}$ une famille de polynômes orthogonaux définie a l'aide de la formule de Rodrigues, alors $P_{n}(x)$ satisfait, pour $n\geqslant0$, une equation différentielle de la forme: $$A(x)y''+B(x)y'+\lambda_{n}y=0$$
+\end{thm}
+\begin{equation}
+\dfrac{d^{n+1}}{dx^{n+1}}[Q\dfrac{d}{dx}(wQ^n)]
+\end{equation}
+
+\begin{equation}
+A(x)=Q(x)
+\end{equation}
+
+\begin{equation}
+B(x)=e_{1}P_{1}(x)
+\end{equation}
+
+\begin{equation}
+\lambda_{n}=-n \left(\dfrac{n-1}{2}Q''(x)+e_{1}k_{1}\right)
+\end{equation}
+\end{frame}
+
+
+\begin{frame}\frametitle{Fonctions génératrices \hfill \insertpagenumber}
+\begin{df}
+A une suite $(U_n)_{n\in\mathbb{N}}$, on associe les séries formelles:
+$$\sum_{n\in\mathbb{N}} U_n x^{n} \text{ et } \sum_{n\in\mathbb{N}}\dfrac{U_n}{n!} x^{n}$$
+\end{df}
+\end{frame}
+
+
+\begin{frame}\frametitle{Les familles classiques \hfill \insertpagenumber}
+\begin{block}{}
+On considère une famille de polynômes orthogonaux donnée par une formule de Rodrigues: 
+\begin{equation}
+P_n(x)=\frac{1}{e_n w(x)} \frac{d^n}{dx^n}(w(x) [Q(x)]^n)
+\end{equation}
+\end{block}
+$Q$ est un polynôme en $x$ de degrés $k$.
+\\Les nombres $e_n$ dépendent de la normalisation.
+\begin{block}{}
+Pour $n=1$:
+\begin{equation}
+e_{1}P_{1}(x)= Q'(x)+Q(x)\dfrac{w'(x)}{w(x)}
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Hermite \hfill \insertpagenumber}
+On considère $k=0$, $Q$ est constante, par exemple $1$. 
+\begin{equation}
+\dfrac{w'(x)}{w(x)}=e_{1}P_{1}(x)
+\end{equation}
+est une fonction linéaire en $x$, on fait le changement de variable 
+\begin{equation}
+\dfrac{w'(x)}{w(x)}=-2x
+\end{equation}
+\begin{block}{}
+Les polynômes issus de la formule de Rodrigues déterminée par :
+\begin{equation}
+I=\R,\ Q(x)=1,\  w(x)=\exp(-x^{2}),\ e_{n}
+\end{equation}
+sont appelés polynômes de Hermite.
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Hermite \hfill \insertpagenumber}
+\begin{block}{Proposition: Formule de Rodrigues}
+\begin{equation}
+H_{n}(t)=(-1)^{n}e^{t^{2}}\dfrac{d^{n}}{dt^{n}}e^{-t^{2}}
+\end{equation}
+\end{block}
+\pause
+\begin{block}{Proposition: Norme}
+\begin{equation}
+\la H_{n},H_{m} \ra=\int_{-\infty}^{+\infty}H_{n}(t)H_{m}(t)e^{-t^{2}}dt=2^{n}n!\sqrt{\pi}\delta_{nm}
+\end{equation}
+\\$\delta_{nm}$ est le delta de Kroenecker, $\delta_{nm}=1$ si $n=m$ et $\delta_{nm}=0$ si $n \neq m$
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Hermite \hfill \insertpagenumber}
+\begin{block}{Proposition: Relations de récurrence}
+\begin{equation}
+H_{n+1}(t)-2tH_{n}(t)+2nH_{n-1}(t)=0
+\end{equation}
+\begin{equation}
+{H'}_{n}(t) = 2nH_{n-1}(t)
+\end{equation}
+\end{block}
+\pause
+\begin{block}{Proposition: Équation différentielle}
+\begin{equation}
+y''-2xy'+2ny = 0
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}\frametitle{Polynômes de Hermite \hfill \insertpagenumber}
+\begin{block}{Proposition: Fonction génératrice}
+Soit $ G(t,z)=e^{2tz-z^{2}}$. Pour tout $ t\in \R $, $ z\rightarrow G(t,z) $ est une fonction entière, la série $ \displaystyle{\sum\limits_{n \in \N}H_{n}(t)\dfrac{z^{n}}{n!}} $ converge et on a:
+\begin{equation}
+\displaystyle{G(t,z)=\sum\limits_{n \in \N}H_{n}(t)\dfrac{z^{n}}{n!}}
+\end{equation}
+\begin{equation}
+\displaystyle{H_{n}(t) = \sum\limits_{k=0}^{E(n/2)}n!\dfrac{(-1)^{k}}{k!}\dfrac{(2t)^{n-2k}}{(n-2k)!}}
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Laguerre \hfill \insertpagenumber}
+En considérant $k=1$ on fait le changement de variable $\dfrac{w'(x)}{w(x)}=-1+\dfrac{a}{x}$, on s'intéresse au cas $a=0$
+\begin{block}{}
+Les polynômes issus de la formule de Rodrigues déterminée par : 
+\begin{equation}
+I=[0, +\infty[,\ Q(x)=x,\ w(x)=\exp(-x),\ e_{n}
+\end{equation}
+sont appelés polynômes de Laguerre.
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Laguerre \hfill \insertpagenumber}
+\begin{block}{Proposition: Formule de Rodriguez}
+\begin{equation}
+L_n(x)= \dfrac{e^x}{n!} \dfrac{d^n}{dx^n}(x^n e^{-x})
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Laguerre \hfill \insertpagenumber}
+\begin{block}{Proposition: Relation de récurrence}
+\begin{equation}
+(n+1)L_{n+1}(x)-(2n+1)L_n(x)+nL_{n-1}(x)=xL_n(x)
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}\frametitle{Polynômes de Laguerre \hfill \insertpagenumber}
+\begin{block}{Proposition: Équation différentielle}
+\begin{equation}
+xy''+(1-x)y'+ny=0
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}\frametitle{Polynômes de Tchebytchev - Polynômes de Legendre\hfill \insertpagenumber}
+Supposons $k\geq 2$, on prends donc $Q(x)=\prod\limits_{i=1}^{k}{(x-a_{i})}$.
+\\Supposons les $ a_{i} $ distincts. On peut écrire 
+\begin{equation}
+\displaystyle{\dfrac{w'(x)}{w(x)}=\sum\limits_{i=0}^{k}{\dfrac{a_{i}}{x-a_{i}}} \Rightarrow w(x)= \prod\limits_{i=1}^{k}{(x-a_{i})^{a_{i}}}}
+\end{equation}
+Cela nous donne:
+\begin{equation}
+P_{n}(x)=\dfrac{1}{e_{n}\prod\limits_{i=1}^k{(x-a_i)^{a_i}}}\dfrac{d^{n}}{dx^{n}}(\prod\limits_{i=1}^{k}{(x-a_{i})^{n+a_{i}}})
+\end{equation}
+\begin{equation}
+Q(x)=x^{2}-1,\ w(x)=(1-x)^{\alpha}(1+x)^{\beta},\ \alpha,\beta > -1,\ e_{n}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Tchebytchev \hfill \insertpagenumber}
+$$\alpha=\beta=-\dfrac{1}{2}$$
+\begin{block}{}
+Les polynômes issus de la formule de Rodrigues déterminée par : 
+\begin{equation}
+I=]-1,1[,\ Q(x)=x^{2}-1,\ w(x)=\dfrac{1}{\sqrt{1-x^{2}}},\ e_{n}
+\end{equation}
+sont appelés polynômes de Tchebytchev.
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Tchebychev \hfill \insertpagenumber}
+\begin{block}{}
+Les polynômes de Tchebychev sont les polynômes définis par la relation:
+\begin{equation}
+T_{n}(\cos \theta)=\cos (n\theta),\ \forall \theta \in \R \text{ soit }  T_{n}(x)=\cos (n\arccos(x)),\ \forall x \in ]-1, 1[
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Tchebychev \hfill \insertpagenumber}
+\begin{block}{Proposition: Relation de récurrence}
+\begin{equation}
+T_{n+1}(t)=2tT_{n}(t)-T_{n-1}(t)
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Tchebychev \hfill \insertpagenumber}
+\begin{block}{Proposition: Équation différentielle}
+\begin{equation}
+(1-t^{2})y''-ty'+n^{2}y=0
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Tchebychev \hfill \insertpagenumber}
+\begin{block}{Proposition: Racines}
+Les racines de $T_n$ sont les $t_{k,n}=\cos \left(\dfrac{(2k-1)\pi}{2n}\right)$, avec $1\leqslant k \leqslant n$
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Tchebychev \hfill \insertpagenumber}
+\begin{block}{Proposition: Fonction génératrice}
+\begin{equation}
+\sum\limits_{n=0}^{+\infty}T_n(t)x^n = \dfrac{1-xt}{1-2xt+x^2}
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Legendre \hfill \insertpagenumber}
+$$\alpha=\beta=0$$
+\begin{block}{}
+Les polynômes issus de la formule de Rodrigues déterminée par : 
+\begin{equation}
+I=[-1,1],\ Q(x)=x^{2}-1,\ w(x)=1,\ e_{n}
+\end{equation}
+sont appelés polynômes de Legendre.
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Legendre \hfill \insertpagenumber}
+\begin{block}{Proposition: Formule de Rodriguez}
+Notons $p_{n}(t):=\dfrac{d^{n}}{dt^{n}}(t^{2}-1)^{n}$. D'après la formule de Rodrigues : $P_{n}(t)=\dfrac{1}{2^{n}n!}p_{n}(t)$.
+\end{block}
+\pause
+\begin{block}{Proposition: Relation de récurrence}
+\begin{equation}
+(n+1)P_{n+1}(t)=(2n+1)tP_{n}(t)-nP_{n-1}(t)
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Polynômes de Legendre \hfill \insertpagenumber}
+\begin{block}{Proposition: Équation différentielle}
+\begin{equation}
+(1-t^{2})y''-2ty'+n(n+1)y=0
+\end{equation}
+\end{block}
+\pause
+\begin{block}{Proposition: Série génératrice}
+\begin{equation}
+\sum\limits_{n=0}^{+\infty}P_n(t)x^n = (1-2tx+t^2)^{-\dfrac{1}{2}}
+\end{equation}
+\end{block}
+\end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù
+\section{Quelques domaines d'application des polynômes orthogonaux}
+ 
+\begin{frame} \frametitle{Quadrature de Gauss en analyse numérique \hfill \insertpagenumber}
+
+\begin{thm}
+Soit $I\subset\R, \ (P_n)_{n\geqslant 1}$ une famille de polynômes orthogonaux par rapport à la mesure $d\lambda(x)$ associée à la densité $w$, avec $w:I\longrightarrow \R$. Si $x_1< x_2< \cdots < x_n$ sont les racines de $P_n(x)$ alors il existe une suite de réels $a_1,a_2, \dots ,a_n$ tels que: 
+
+\begin{equation}
+\int_I{f(x)d\lambda(x)}=\sum\limits_{k=1}^n a_k f(x_k)
+\end{equation}
+
+où $f(x)$ est une fonction polynomiale de degré $2n-1$.
+\end{thm}
+
+\end{frame} 
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}\frametitle{Quadrature de Gauss en analyse numérique \hfill \insertpagenumber}
+
+\begin{block}{}
+Les nombres $a_k$ sont appelés nombres de Christoffel et sont déterminés par:
+
+\begin{equation}
+a_k=\dfrac{1}{K_n(x_k,x_k)}
+\end{equation}
+
+\end{block}
+
+\end{frame}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\begin{frame} \frametitle{Quadrature de Gauss en analyse numérique \hfill \insertpagenumber}
+
+\begin{ex}
+Approximation numérique de $\displaystyle{\int_{-1}^1{(x+1)^2dx}}$.
+On utilisera les polynômes de Legendre.
+
+\pause
+
+\begin{center}
+\begin{tabular}{cccc}
+n & $a_n$ & Racines & $P_n$ \\
+$1$ & $2$ & $0$ & $x$ \\
+$2$ & $1;1$ & $-\dfrac{1}{\sqrt{3}},\dfrac{1}{\sqrt{3}}$ & $\dfrac{3x^2-1}{2}$\\
+$3$ & $\dfrac{5}{9};\dfrac{8}{9};\dfrac{5}{9}$ & $-\sqrt{\dfrac{3}{5}};0;\sqrt{\dfrac{3}{5}}$ & $\dfrac{5x^3-3x}{2}$\\
+\end{tabular}
+\end{center}
+\end{ex}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\begin{frame} \frametitle{Quadrature de Gauss en analyse numérique \hfill \insertpagenumber}
+
+\begin{ex}{(suite)}
+  On obtient:
+  $$\int_{-1}^1{(x+1)^2dx}=1\left(\dfrac{1}{\sqrt{3}}+1\right)^2+1\left(-\dfrac{1}{\sqrt{3}}+1\right)^2=\dfrac{8}{3}.$$
+On peut facilement vérifier ce résultat:
+$$\int_{-1}^1{(x+1)^2dx}=\left[\dfrac{(x+1)^3}{3}\right]^1_{-1}=\dfrac{8}{3}$$
+\end{ex}
+ 
+ \end{frame} 
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} \frametitle{Oscillateur harmonique \hfill \insertpagenumber}
+\begin{block}{}
+L'oscillateur harmonique classique est un corps de masse $m$ attaché a un ressort linéaire.
+Potentiel associé à un oscillateur harmonique:
+\begin{equation}
+V(x)=cx^2
+\end{equation}
+où $c$ est une constante.
+\end{block}
+ 
+\end{frame} 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}\frametitle{Oscillateur harmonique \hfill \insertpagenumber}
+
+Introduisons l'équation de Schrödinger qui, en mécanique quantique, régit le comportement des particules ayant une certaine masse $m$ placée dans un certain potentiel $V$. $h$ est la constante de Planck.
+\begin{block}{}
+\begin{equation}
+ih\frac{\partial\psi(x,t)}{\partial t}= -\frac{h^2}{2m} \nabla^2 \psi(x,t)+V(x,t)\psi(x,t).
+\end{equation}
+\end{block}
+
+\pause
+
+Dans la suite nous travaillerons en dimension $1$ avec 
+\begin{equation}
+V(x)=\frac{h^2}{2mx^2}
+\end{equation}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}\frametitle{Oscillateur harmonique \hfill \insertpagenumber}
+
+L'équation devient: 
+\begin{equation}
+ih\frac{\partial}{\partial t} \psi(x,t)= -\frac{h^2}{2m}\frac{\partial^2}{\partial x^2} \psi(x,t)+V(x)\psi(x,t).
+\end{equation}
+
+Posons $\psi(x,t)=A(x)B(t)$ et $E=hw$ comme constante de séparation. on obtient:
+\begin{equation}
+ih\frac{dB(t)}{dt} = hwB(t) \Longrightarrow B(t)=ae^{-iwt}
+\end{equation}
+
+\begin{equation}
+\frac{-h^2}{2m}\frac{d^2A(x)}{dx^2}+V(x)A(x)= hwA(x)
+\end{equation}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}\frametitle{Oscillateur harmonique \hfill \insertpagenumber}
+
+Réécrivons la seconde équation en insérant le potentiel $V$ choisi.
+on obtient: 
+\begin{equation}
+\frac{d^2A(x)}{dx^2}+\left(\frac{2mw}{h}-x^2\right) A(x)=0.
+\end{equation} 
+
+\pause
+
+Posons maintenant $\frac{2mw}{h}=2n+1$.
+Nous obtenons 
+\begin{equation}
+\frac{d^2A}{dx^2}+(2n+1-x^2)A=0
+\end{equation}
+
+\end{frame}
+
+\begin{frame}\frametitle{Oscillateur harmonique \hfill \insertpagenumber}
+
+En posant maintenant $u=\exp\left(\dfrac{x^2}{2}\right)A(x)$, l'équation précédente devient:
+\begin{block}{}
+\begin{equation}
+\frac{d^2u}{dx^2}-2x\frac{du}{dx}+2nu=0
+\end{equation}
+\end{block}
+
+\pause
+
+Les solutions utiles de cette équation sont les polynômes de Hermite.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+
+\begin{frame} \frametitle{Conclusion}
+ 
+\begin{block}{}
+La motivation de ce mémoire était de présenter de façon rigoureuse la théorie des polynômes orthogonaux. Dans ce but, nous avons introduit le sujet par l'intermédiaire de la méthode d'orthogonalisation de Gram-Schmidt. Nous avons ensuite décortiqué certaines propriétés de base desdits polynômes, et finalement, nous avons abordé les applications.
+\\Ceci est sans parler des sujets que nous n'avons pas abordé du tout, mentionnons la théorie des mesures secondaires, ou encore l'utilisation d'ensembles de polynômes dits « biorthogonaux » en codage et décodage de signaux.
+\\Les objets en apparence simples mais pleins de potentiels que sont les polynômes sont encore étudiés sous plusieurs angles. Il est donc justifié de croire que la théorie continuera encore de se développer et de donner des applications intéressantes.
+\end{block} 
+  
+\end{frame}
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+ \begin{center}
+ \includegraphics[scale=0.60]{m64.jpeg}\\
+ \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
